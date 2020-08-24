@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="IFrame orientation: Child">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <title>IFrame orientation: Child</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #afd0af;
+    }
+    #logger {
+        border-style: inset;
+    }
+
+  </style>
+</head>
+<body>
+
+  <p>IFrame that listens to the "orientationchange"</p>
+
+  <pre id=logger></pre>
+
+  <p>This iframe is broken, because ancestor iframe has css flex property.</p>
+  <small>* it still we be broken if any ancestor iframe or itself has flex property set.</small>
+
+</body>
+<script>
+    function log(m) {
+        logger.textContent += '\n' + m;
+    }
+
+    log(`START: ${window.screen.orientation.type}`);
+
+
+    window.addEventListener("orientationchange", function() {
+    log(`screen.orientation: ${screen.orientation.type}`);
+    console.log('orientatinon event happened!', window.screen.orientation.type);
+    });
+</script>
+</html>
